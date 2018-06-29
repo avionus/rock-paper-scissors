@@ -41,9 +41,58 @@
 			}
 		}
 
-		const playerSelection = "rock";
-		const computerSelection = computerPlay();
-		console.log(versus(playerSelection, computerSelection));
+		// const computerSelection = computerPlay();
+		
+		function game(){
+			let hscore = 0;
+			
+			let cscore = 0;
+			for(i = 0; i < 5; i++){
+			let playerSelection = prompt("rock, paper, scissors, shoot!");
+			let computerSelection = computerPlay();
+			function versus(playerSelection, computerSelection){
+				let human = playerSelection.toLowerCase();
+				if (human == "rock" && computerSelection == "rock") {
+					console.log( "it's a tie! please pick again");
+				}else if (human == "rock" && computerSelection == "paper"){
+					console.log("paper beats rock, you lose!");
+					return cscore++;
+				}else if (human == "rock" && computerSelection == "scissors"){
+					console.log("rock beats scissors! you win!");
+					return ++hscore;
+				}else if (human == "paper" && computerSelection == "rock"){
+					console.log("paper beats rock! you win!");
+					return ++hscore;
+				}else if (human == "paper" && computerSelection == "paper"){
+					console.log( "it's a tie! please pick again");
+				}else if (human == "paper" && computerSelection == "scissors"){
+					console.log( "scissors beat paper! you lose!");
+					return ++cscore;
+				}else if (human == "scissors" && computerSelection == "rock"){
+					console.log("rock beats scissors! you lose!");
+					return ++cscore;
+				}else if (human == "scissors" && computerSelection == "paper"){
+					console.log("scissors beats paper! you win!");
+					return ++hscore;
+				}else if (human == "scissors" && computerSelection == "scissors"){
+					console.log( "it's a tie! please pick again");
+				}else {
+					console.log("...you don't know how to play do you");
+				}
+	
+			} 
+		versus(playerSelection, computerSelection);
+		}
+		if (hscore > cscore){
+			console.log("you win!");
+		} else if (hscore == cscore){
+			console.log("it's a tie!");
+		} else {
+			console.log("computer wins!");
+		}
+		}
+
+		game();
 	</script>
 </body>
 </html>
