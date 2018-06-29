@@ -1,0 +1,1 @@
+The readme for rock paper scissors made entirely in javascript! Are you looking for the readme I made for the google homepage? Well in my hubris I deleted it thinking it'd make loading/sharing my first project...a thing that could happen. It wasn't. It's gone now. No use crying over spiled milk.
