@@ -68,10 +68,10 @@
 		const scissors = document.querySelector("#scissors");
 		const container = document.querySelector('#results');
 		const content = document.createElement('div');
-		const computerSelection = computerPlay();
-		rock.addEventListener('click', () => versus("rock", computerSelection));
-		paper.addEventListener('click', () => versus("paper", computerSelection));
-		scissors.addEventListener('click', () => versus("scissors", computerSelection));
+		// const computerSelection = computerPlay();
+		rock.addEventListener('click', () => versus("rock", computerPlay()));
+		paper.addEventListener('click', () => versus("paper", computerPlay()));
+		scissors.addEventListener('click', () => versus("scissors", computerPlay()));
 		
 	</script>
 </body>
