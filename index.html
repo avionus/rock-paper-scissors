@@ -1,92 +1,102 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title> Sun, Moon, Planet!</title>
+	<link rel="stylesheet" type="text/css" href="rock-paper-scissors.css">
+	<link href="https://fonts.googleapis.com/css?family=Chela+One|Nunito" rel="stylesheet">
 </head>
 <body>
-	<button id="rock"> Rock </button>
-	<button id="paper"> Paper </button>
-	<button id="scissors"> Scissors </button>
-	<div id="results"></div>
-	<div id="score"></div>
+	<div class="lilbox">
+		<h1> Sun, Moon, Planet! </h1>
+		<button id="Sun"> Sun </button>
+		<button id="Moon"> Moon </button>
+		<button id="Planet"> Planet </button>
+		<div id="results"></div>
+		<div id="score"></div>
+	</div>
 	<script type="text/javascript">
+		//computer randomization
 		function computerPlay(){
 			let roll = Math.floor(Math.random() * 10);
 			if (roll <= 3) {
-				return("rock");
+				return("Sun");
 			} else if (roll == 4 || roll <= 7){
-				return("paper");
+				return("Moon");
 			} else if (roll == 8 || roll <= 10){
-				return("scissors");
+				return("Planet");
 			}
 		}
 		//human score and computer score
 		let hscore = 0;
 		let cscore = 0;
-		// rock paper scissors logic
+		// Sun Moon Planet logic
 		function versus(playerSelection, computerSelection){
-			if (playerSelection == "rock" && computerSelection == "rock") {
-				content.textContent = "it's a tie! please pick again";
+			if (playerSelection == "Sun" && computerSelection == "Sun") {
+				content.textContent = "It's a tie, try something else!";
 				content.setAttribute('style', 'color: blue; padding-top: 10px');
 				container.appendChild(content);
-			}else if (playerSelection == "rock" && computerSelection == "paper"){
+			}else if (playerSelection == "Sun" && computerSelection == "Moon"){
 				content.setAttribute('style', 'color: red; padding-top: 10px');
-				content.textContent ="paper beats rock, you lose!";
+				content.textContent ="Moon beats Sun, try again!";
 				container.appendChild(content);
 				cscore++;
-			}else if (playerSelection == "rock" && computerSelection == "scissors"){
+			}else if (playerSelection == "Sun" && computerSelection == "Planet"){
 				content.setAttribute('style', 'color: green; padding-top: 10px');
-				content.textContent = "rock beats scissors! you win!";
+				content.textContent = "Sun beats Planet! Keep going!";
 				container.appendChild(content);
 				hscore++;
-			}else if (playerSelection == "paper" && computerSelection == "rock"){
+			}else if (playerSelection == "Moon" && computerSelection == "Sun"){
 				content.setAttribute('style', 'color: green; padding-top: 10px');
-				content.textContent = "paper beats rock! you win!";
+				content.textContent = "Moon beats Sun! Keep going!";
 				container.appendChild(content);
 				hscore++;
-			}else if (playerSelection == "paper" && computerSelection == "paper"){
+			}else if (playerSelection == "Moon" && computerSelection == "Moon"){
 				content.setAttribute('style', 'color: blue; padding-top: 10px');
-				content.textContent = "it's a tie! please pick again";
+				content.textContent = "It's a tie, try something else!";
 				container.appendChild(content);
-			}else if (playerSelection == "paper" && computerSelection == "scissors"){
+			}else if (playerSelection == "Moon" && computerSelection == "Planet"){
 				content.setAttribute('style', 'color: red; padding-top: 10px');
-				content.textContent = "scissors beat paper! you lose!";
+				content.textContent = "Planet beat Moon, try again!";
 				container.appendChild(content);
 				cscore++;
-			}else if (playerSelection == "scissors" && computerSelection == "rock"){
+			}else if (playerSelection == "Planet" && computerSelection == "Sun"){
 				content.setAttribute('style', 'color: red; padding-top: 10px');
-				content.textContent = "rock beats scissors! you lose!";
+				content.textContent = "Sun beats Planet, try again!";
 				container.appendChild(content);
 				cscore++;
-			}else if (playerSelection == "scissors" && computerSelection == "paper"){
+			}else if (playerSelection == "Planet" && computerSelection == "Moon"){
 				content.setAttribute('style', 'color: green; padding-top: 10px');
-				content.textContent = "scissors beats paper! you win!";
+				content.textContent = "Planet beats Moon! Keep going!";
 				container.appendChild(content);
 				hscore++;
-			}else if (playerSelection == "scissors" && computerSelection == "scissors"){
+			}else if (playerSelection == "Planet" && computerSelection == "Planet"){
 				content.setAttribute('style', 'color: blue; padding-top: 10px');
-				content.textContent = "it's a tie! please pick again";
+				content.textContent = "It's a tie, try something else!";
 				container.appendChild(content);
-			}else {
-				return "...you don't know how to play do you";
 			}
-			compScore.textContent = "the computer score is: " + cscore;
+
+			compScore.textContent = "The computer's score is: " + cscore;
 			compScore.setAttribute('style', 'padding-top: 5px; padding-bottom: 5px'); 
 			score.appendChild(compScore);
-			humanScore.textContent = "your score is: " + hscore;
+			humanScore.textContent = "Your score is: " + hscore;
 			score.appendChild(humanScore);
+			// win/lose conditions
 			if (hscore == 5){
-				youWin.textContent = "You win!";
+				alert("You win! Make a new selection to start playing again.");
 				score.appendChild(youWin);
+				hscore = 0;
+				cscore = 0;
 			} else if (cscore == 5){
-				compWin.textContent = "Computer wins!";
+				alert("Computer wins! Make a new selection to start playing again.");
 				score.appendChild(compWin);
+				cscore = 0;
+				hscore = 0;
 			}
 		}
-
-		const rock = document.querySelector("#rock");
-		const paper = document.querySelector("#paper");
-		const scissors = document.querySelector("#scissors");
+		// solid variables, obviously
+		const Sun = document.querySelector("#Sun");
+		const Moon = document.querySelector("#Moon");
+		const Planet = document.querySelector("#Planet");
 		const container = document.querySelector('#results');
 		const content = document.createElement('div');
 		const score = document.querySelector('#score');
@@ -95,9 +105,9 @@
 		const youWin = document.createElement('div');
 		const compWin = document.createElement('div');
 		// on clicking the button, play directly against computer as opposed to saving the function in a variable and having that one call be parsed into the function, thus negating the need to refresh the page everytime you want to play
-		rock.addEventListener('click', () => versus("rock", computerPlay()));
-		paper.addEventListener('click', () => versus("paper", computerPlay()));
-		scissors.addEventListener('click', () => versus("scissors", computerPlay()));
+		Sun.addEventListener('click', () => versus("Sun", computerPlay()));
+		Moon.addEventListener('click', () => versus("Moon", computerPlay()));
+		Planet.addEventListener('click', () => versus("Planet", computerPlay()));
 		
 	</script>
 </body>
