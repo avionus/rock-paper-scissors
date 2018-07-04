@@ -16,7 +16,7 @@ h1 {
 	font-weight: 200;
 	text-align: center;
 }
-#results, #score {
+h5, #results, #score {
 	font-family: 'Nunito', sans-serif;
 	text-align: center;
 }

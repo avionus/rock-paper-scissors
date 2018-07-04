@@ -8,6 +8,7 @@
 <body>
 	<div class="lilbox">
 		<h1> Sun, Moon, Planet! </h1>
+		<h5> <em>Press one of the buttons below to start the game.</em></h5>
 		<button id="Sun"> Sun </button>
 		<button id="Moon"> Moon </button>
 		<button id="Planet"> Planet </button>
@@ -79,6 +80,7 @@
 			compScore.setAttribute('style', 'padding-top: 5px; padding-bottom: 5px'); 
 			score.appendChild(compScore);
 			humanScore.textContent = "Your score is: " + hscore;
+			humanScore.setAttribute('style', 'padding-bottom: 10px');
 			score.appendChild(humanScore);
 			// win/lose conditions
 			if (hscore == 5){
