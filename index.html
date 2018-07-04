@@ -8,6 +8,7 @@
 	<button id="paper"> Paper </button>
 	<button id="scissors"> Scissors </button>
 	<div id="results"></div>
+	<div id="score"></div>
 	<script type="text/javascript">
 		function computerPlay(){
 			let roll = Math.floor(Math.random() * 10);
@@ -19,9 +20,11 @@
 				return("scissors");
 			}
 		}
-		
+		//human score and computer score
+		let hscore = 0;
+		let cscore = 0;
+		// rock paper scissors logic
 		function versus(playerSelection, computerSelection){
-			
 			if (playerSelection == "rock" && computerSelection == "rock") {
 				content.textContent = "it's a tie! please pick again";
 				content.setAttribute('style', 'color: blue; padding-top: 10px');
@@ -30,14 +33,17 @@
 				content.setAttribute('style', 'color: red; padding-top: 10px');
 				content.textContent ="paper beats rock, you lose!";
 				container.appendChild(content);
+				cscore++;
 			}else if (playerSelection == "rock" && computerSelection == "scissors"){
 				content.setAttribute('style', 'color: green; padding-top: 10px');
 				content.textContent = "rock beats scissors! you win!";
 				container.appendChild(content);
+				hscore++;
 			}else if (playerSelection == "paper" && computerSelection == "rock"){
 				content.setAttribute('style', 'color: green; padding-top: 10px');
 				content.textContent = "paper beats rock! you win!";
 				container.appendChild(content);
+				hscore++;
 			}else if (playerSelection == "paper" && computerSelection == "paper"){
 				content.setAttribute('style', 'color: blue; padding-top: 10px');
 				content.textContent = "it's a tie! please pick again";
@@ -46,20 +52,35 @@
 				content.setAttribute('style', 'color: red; padding-top: 10px');
 				content.textContent = "scissors beat paper! you lose!";
 				container.appendChild(content);
+				cscore++;
 			}else if (playerSelection == "scissors" && computerSelection == "rock"){
 				content.setAttribute('style', 'color: red; padding-top: 10px');
 				content.textContent = "rock beats scissors! you lose!";
 				container.appendChild(content);
+				cscore++;
 			}else if (playerSelection == "scissors" && computerSelection == "paper"){
 				content.setAttribute('style', 'color: green; padding-top: 10px');
 				content.textContent = "scissors beats paper! you win!";
 				container.appendChild(content);
+				hscore++;
 			}else if (playerSelection == "scissors" && computerSelection == "scissors"){
 				content.setAttribute('style', 'color: blue; padding-top: 10px');
 				content.textContent = "it's a tie! please pick again";
 				container.appendChild(content);
 			}else {
 				return "...you don't know how to play do you";
+			}
+			compScore.textContent = "the computer score is: " + cscore;
+			compScore.setAttribute('style', 'padding-top: 5px; padding-bottom: 5px'); 
+			score.appendChild(compScore);
+			humanScore.textContent = "your score is: " + hscore;
+			score.appendChild(humanScore);
+			if (hscore == 5){
+				youWin.textContent = "You win!";
+				score.appendChild(youWin);
+			} else if (cscore == 5){
+				compWin.textContent = "Computer wins!";
+				score.appendChild(compWin);
 			}
 		}
 
@@ -68,7 +89,12 @@
 		const scissors = document.querySelector("#scissors");
 		const container = document.querySelector('#results');
 		const content = document.createElement('div');
-		// const computerSelection = computerPlay();
+		const score = document.querySelector('#score');
+		const humanScore = document.createElement('div');
+		const compScore = document.createElement('div');
+		const youWin = document.createElement('div');
+		const compWin = document.createElement('div');
+		// on clicking the button, play directly against computer as opposed to saving the function in a variable and having that one call be parsed into the function, thus negating the need to refresh the page everytime you want to play
 		rock.addEventListener('click', () => versus("rock", computerPlay()));
 		paper.addEventListener('click', () => versus("paper", computerPlay()));
 		scissors.addEventListener('click', () => versus("scissors", computerPlay()));
